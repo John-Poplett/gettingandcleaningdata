@@ -23,7 +23,10 @@ y.test <- read.table("test/y_test.txt")
 
 #
 # The feature names are illegal. Use gsub to convert parens
-# and hyphens into R-friendly "." delimiters.
+# and hyphens into R-friendly "." delimiters. Use make.names
+# to catch anything else, including especially duplicate 
+# column names. The gsub steps are non-essential. The output
+# eliminates or minimizes repeated and trailing dots.
 #
 # See Google's R Style Guide on identifiers.
 # https://google-styleguide.googlecode.com/svn/trunk/Rguide.xml#identifiers
@@ -31,11 +34,14 @@ y.test <- read.table("test/y_test.txt")
 # This partially fulfills the goal of "tidy" data.
 #
 features <- read.table("features.txt")[,2]
-features <- gsub("(\\(\\)){0,1}-|,", ".", features)
-features <- gsub("\\(\\)$", "", features)
-features <- gsub("\\)", "", features)
-features <- gsub("\\(", ".", features)
-write.table(features, "foo.txt")
+#features <- gsub("(\\(\\)){0,1}-|,", ".", features)
+#features <- gsub("\\(\\)$", "", features)
+#features <- gsub("\\)", "", features)
+#features <- gsub("\\(", ".", features)
+features <- make.names(features, unique=TRUE)
+features <- gsub("\\.+", ".", features)
+features <- gsub("\\.$", "", features)
+write.table(features, "foo.txt") # FIXME
 
 #
 # Use rbind to merge, the corresponding
@@ -63,4 +69,10 @@ dataset <- cbind(X.data, subject.data, y.data)
 #
 activities <- read.table("activity_labels.txt")[,2]
 dataset[,"Activities"] <- factor(dataset[,"Activities"], label=activities)
+
+#
+# Now, shrink down columns to mean and std columns only
+# with grep. This completes step #2.
+#
+dataset <- dataset[,grepl("std|mean", colnames(dataset))])
 
