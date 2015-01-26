@@ -9,6 +9,14 @@ output: html_document
 The data for the course project comes from the UCI machine learning repository and is self-contained in a zip file. The data in the zip file constitutes the raw data. The data is located here (http://archive.ics.uci.edu/ml/datasets/Human+Activity+Recognition+Using+Smartphones). 
 
 # Code book
+
+Information on the format of the column label naming conventions used by the raw data is provided in the document features_info.txt. The values of features are normalized on a scale of -1 to 1 and are
+therefor "unitless".
+
+The values in our dataset is derived from the raw data and is a subset thereof. It consists of those 79 values that represent the mean or standard deviation of samples taken in a sample window.
+
+
+
 # Flotsam and Jetsam
 This is an R Markdown document. Markdown is a simple formatting syntax for authoring HTML, PDF, and MS Word documents. For more details on using R Markdown see <http://rmarkdown.rstudio.com>.
 

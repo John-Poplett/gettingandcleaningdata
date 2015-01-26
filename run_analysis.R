@@ -13,6 +13,7 @@
 # 4) Appropriately labels the data set with descriptive variable names. 
 # 5) From the data set in step 4, creates a second, independent tidy data set with the average of each variable for each activity and each subject.
 #
+library(dplyr)
 
 X.train <- read.table("train/X_train.txt")
 subject.train <- read.table("train/subject_train.txt")
@@ -41,7 +42,6 @@ features <- read.table("features.txt")[,2]
 features <- make.names(features, unique=TRUE)
 features <- gsub("\\.+", ".", features)
 features <- gsub("\\.$", "", features)
-write.table(features, "foo.txt") # FIXME
 
 #
 # Use rbind to merge, the corresponding
@@ -74,5 +74,26 @@ dataset[,"Activities"] <- factor(dataset[,"Activities"], label=activities)
 # Now, shrink down columns to mean and std columns only
 # with grep. This completes step #2.
 #
-dataset <- dataset[,grepl("std|mean", colnames(dataset))])
+# Helpful suggestion located here: 
+#
+# http://stackoverflow.com/questions/25923392/r-dplyr-select-columns-based-on-string
+#
+dataset <- dataset[,grepl("std|mean|Subjects|Activities", colnames(dataset))]
+
+#
+# Upgrade names to names that comply to the aforementioned Google R Style guide.
+#
+# This completes part #4.
+#
+names(dataset) <- read.table("names.txt")[,2]
+
+by_subject_activity <- group_by(dataset, subjects, activities)
+
+summary <-lapply(summarize(by_subject_activity), function(subject.activity) {
+  subject <- subject.activity[[1]]
+  activity <- subject.activity[[2]]
+  means <- colMeans(dataset[dataset$subjects == subject & dataset$activities == activity,1:79])
+  rbind(data.frame(subject.activity), means)
+})
+
 
