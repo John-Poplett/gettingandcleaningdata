@@ -93,7 +93,7 @@ summary <-lapply(summarize(by_subject_activity), function(subject.activity) {
   subject <- subject.activity[[1]]
   activity <- subject.activity[[2]]
   means <- colMeans(dataset[dataset$subjects == subject & dataset$activities == activity,1:79])
-  rbind(data.frame(subject.activity), means)
+  rbind(subject.activity, means)
 })
 
 
