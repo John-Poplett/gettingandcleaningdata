@@ -5,3 +5,5 @@ features.txt
 features_info.txt
 test/
 train/
+.httr-oauth
+.R*

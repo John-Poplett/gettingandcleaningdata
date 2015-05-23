@@ -87,6 +87,8 @@ dataset <- dataset[,grepl("std|mean|Subjects|Activities", colnames(dataset))]
 #
 names(dataset) <- read.table("names.txt")[,2]
 
+tds <- dataset %>% group_by(subjects, activities) %>% summarise_each(funs(mean))
+
 by_subject_activity <- group_by(dataset, subjects, activities)
 
 summary <-lapply(summarize(by_subject_activity), function(subject.activity) {
