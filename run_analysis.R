@@ -89,13 +89,6 @@ names(dataset) <- read.table("names.txt")[,2]
 
 tds <- dataset %>% group_by(subjects, activities) %>% summarise_each(funs(mean))
 
-by_subject_activity <- group_by(dataset, subjects, activities)
-
-summary <-lapply(summarize(by_subject_activity), function(subject.activity) {
-  subject <- subject.activity[[1]]
-  activity <- subject.activity[[2]]
-  means <- colMeans(dataset[dataset$subjects == subject & dataset$activities == activity,1:79])
-  rbind(subject.activity, means)
-})
+write.table(tds, file = "tds.txt", row.names = FALSE)
 
 
