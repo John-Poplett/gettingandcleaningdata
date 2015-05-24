@@ -30,6 +30,6 @@ Video recordings were made to label the data with the relevant activity.
 
 The value names conform to a strict pattern that uses a consistent set of subnames so that it possible to decode the meaning of any measurement from its subnames.
 
-For example, each measurement either belongs to the frequency or time domain and is prefixed accordingly with `time.domain` or `frequency.domain`. Each variable specifies its direction "X" or "Y" or indicates a magnitude ("magnitude"). 
+For example, each measurement either belongs to the frequency or time domain and is prefixed accordingly with `time.domain` or `frequency.domain`. Each variable specifies its direction in "X","Y" "Z" coordinates or indicates a magnitude ("magnitude").
 
 The Fourier signals are for 128 samples at 50 Hz.
