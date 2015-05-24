@@ -15,21 +15,21 @@ therefor "unitless".
 
 The values in our dataset is derived from the raw data and is a subset thereof. It consists of those 79 values that represent the mean or standard deviation of samples taken in a sample window.
 
+The values in the dataset derive from raw measurements taken from the accelerometer and gyroscope on a smart phone device (Samsung S2) and from synthetic values created from the raw measurements. For example, the accelerometer data is broken out into two measurements a measurement for acceleration and a separate measurement for gravity. These are represented respectively in the variable names as "body" and "gravity". Each measurement is labeled by subject and activity and each observation has a column each to identify the subject and the activity.
 
+The activities are represented as a factor and have one of the following values:
 
-# Flotsam and Jetsam
-This is an R Markdown document. Markdown is a simple formatting syntax for authoring HTML, PDF, and MS Word documents. For more details on using R Markdown see <http://rmarkdown.rstudio.com>.
+* WALKING
+* WALKING_UPSTAIRS
+* WALKING_DOWNSTAIRS
+* SITTING
+* STANDING
+* LAYING
 
-When you click the **Knit** button a document will be generated that includes both content as well as the output of any embedded R code chunks within the document. You can embed an R code chunk like this:
+Video recordings were made to label the data with the relevant activity.
 
-```{r}
-summary(cars)
-```
+The value names conform to a strict pattern that uses a consistent set of subnames so that it possible to decode the meaning of any measurement from its subnames.
 
-You can also embed plots, for example:
+For example, each measurement either belongs to the frequency or time domain and is prefixed accordingly with `time.domain` or `frequency.domain`. Each variable specifies its direction "X" or "Y" or indicates a magnitude ("magnitude"). 
 
-```{r, echo=FALSE}
-plot(cars)
-```
-
-Note that the `echo = FALSE` parameter was added to the code chunk to prevent printing of the R code that generated the plot.
+The Fourier signals are for 128 samples at 50 Hz.

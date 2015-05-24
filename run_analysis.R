@@ -35,11 +35,7 @@ y.test <- read.table("test/y_test.txt")
 # This partially fulfills the goal of "tidy" data.
 #
 features <- read.table("features.txt")[,2]
-#features <- gsub("(\\(\\)){0,1}-|,", ".", features)
-#features <- gsub("\\(\\)$", "", features)
-#features <- gsub("\\)", "", features)
-#features <- gsub("\\(", ".", features)
-features <- make.names(features, unique=TRUE)
+features <- make.names(features, unique = TRUE)
 features <- gsub("\\.+", ".", features)
 features <- gsub("\\.$", "", features)
 
@@ -52,9 +48,9 @@ features <- gsub("\\.$", "", features)
 X.data <- rbind(X.train, X.test)
 names(X.data) <- features
 subject.data <- rbind(subject.train, subject.test)
-names(subject.data) <- "Subjects"
+names(subject.data) <- "subjects"
 y.data <- rbind(y.train, y.test)
-names(y.data) <- "Activities"
+names(y.data) <- "activities"
 
 #
 # Create a single dataset with cbind. This completes
@@ -68,7 +64,7 @@ dataset <- cbind(X.data, subject.data, y.data)
 # step #3 in the instructions.
 #
 activities <- read.table("activity_labels.txt")[,2]
-dataset[,"Activities"] <- factor(dataset[,"Activities"], label=activities)
+dataset[,"activities"] <- factor(dataset[,"activities"], label=activities)
 
 #
 # Now, shrink down columns to mean and std columns only
@@ -78,7 +74,7 @@ dataset[,"Activities"] <- factor(dataset[,"Activities"], label=activities)
 #
 # http://stackoverflow.com/questions/25923392/r-dplyr-select-columns-based-on-string
 #
-dataset <- dataset[,grepl("std|mean|Subjects|Activities", colnames(dataset))]
+dataset <- dataset[,grepl("std|mean|subjects|activities", colnames(dataset))]
 
 #
 # Upgrade names to names that comply to the aforementioned Google R Style guide.
@@ -94,8 +90,8 @@ compliant.names <- gsub("Gyro", "gyroscope", compliant.names)
 compliant.names <- gsub("Jerk", ".jerk", compliant.names)
 compliant.names <- gsub("Mag", ".magnitude", compliant.names)
 compliant.names <- gsub("Freq", ".frequency", compliant.names)
-compliant.names <- gsub("Activities", "activities", compliant.names)
-compliant.names <- gsub("Subjects", "subjects", compliant.names)
+compliant.names <- gsub("body.Bodyaccelerometer", "body.accelerometer", compliant.names)
+compliant.names <- gsub("body.Bodygyroscope", "body.gyroscope", compliant.names)
 names(dataset) <- compliant.names
 
 #

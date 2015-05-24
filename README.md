@@ -15,6 +15,8 @@ Creating a single R script, run_analysis.R, that performs the following:
 * provides descriptive names for the activities studied in the study
 * create an independent, tidy data set with the average of each variable for each activity and each subject
 
+The run_Analysis.R script does not download the required data files. The steps required to retrieve the data and run the run_Analysis.R script are detailed below.
+
 ## Setup
 
 The script presupposes the existence of the UCI test and training files in relative locations to the
@@ -29,10 +31,11 @@ Step-by-step directions are:
     
 # Execution
 
-To run the script you can source it from the command prompt as follows.
+To run the script you can source it in R from your operating system shell as follows.
 
 1. Change directories to the UCI base directory (e.g. `cd UCI\ HAR\ Dataset`)
-1. Then, "source" the run_Analysis.R script (e.g. `source("../run_analysis.R")`)
+1. Launch R.
+1. Then, at the R command prompt, "source" the run_Analysis.R script (e.g. `source("../run_analysis.R")`).
 
 Once the script is executed, it will produce the output file "tds.txt" with the contents of the
 tidied data.
@@ -40,5 +43,5 @@ tidied data.
 # Viewing the output
 You can then view this file with the following command.
 
-View(read.table("tds.txt", header = TRUE))
+`View(read.table("tds.txt", header = TRUE))`
 
