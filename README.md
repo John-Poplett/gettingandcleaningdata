@@ -18,7 +18,7 @@ Creating a single R script, run_analysis.R, that performs the following:
 ## Setup
 
 The script presupposes the existence of the UCI test and training files in relative locations to the
-script, i.e. the run_analysis.R script is executed in the base UCI directory which also contains the train and test folders. Alternatively, the UCI files can be unzipped into the repo location.
+script, i.e. the run_analysis.R script is executed in the base UCI directory which also contains the train and test folders. The UCI files can be unzipped directly into the repo location without collision.
 
 Step-by-step directions are:
 
@@ -30,6 +30,9 @@ Step-by-step directions are:
 # Execution
 
 To run the script you can source it from the command prompt as follows.
+
+1. Change directories to the UCI base directory (e.g. `cd UCI\ HAR\ Dataset`)
+1. Then, "source" the run_Analysis.R script (e.g. `source("../run_analysis.R")`)
 
 Once the script is executed, it will produce the output file "tds.txt" with the contents of the
 tidied data.
